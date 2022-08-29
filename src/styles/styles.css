@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 62.5%;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.ant-modal-content {
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+
+.ant-picker-panels>*:first-child button.ant-picker-header-next-btn {
+  visibility: visible !important;
+}
+
+.ant-picker-panels>*:first-child button.ant-picker-header-super-next-btn {
+  visibility: visible !important;
+}
+
+.ant-picker-panels>*:last-child {
+  display: none;
+}
+
+.ant-picker-panel-container,
+.ant-picker-footer {
+  width: 280px !important;
+}
+
+.ant-picker-footer-extra>div {
+  flex-wrap: wrap !important;
+}
+
+.ant-picker.ant-picker-range {
+  visibility: hidden!important;
+  position: absolute
+}
