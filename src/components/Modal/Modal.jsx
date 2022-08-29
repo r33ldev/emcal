@@ -1,24 +1,38 @@
 import { Modal } from 'antd';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeEventModal } from '../../redux/appslice';
+import { closeEventModal, setEventDetails } from '../../redux/appslice';
 import { DatePicker, Input, Button } from 'antd';
 import Tags from './sub-component/Tags';
+import { saveState } from '../../redux/localStorage';
 const EventModal = () => {
   const { RangePicker } = DatePicker;
   const dispatch = useDispatch();
-  const { selectedDay } = useSelector((state) => state.app);
+  const { selectedDay, eventDetails } = useSelector((state) => state.app);
   const [openDatePicker, setOpenDatePicker] = useState(false);
   const [dates, setDates] = useState(selectedDay.format('D MMM, YYYY'));
+  const [eventTitle, setEventTitle] = useState('');
+  const [eventDescription, setEventDescription] = useState('');
   const { TextArea } = Input;
   function handleDatePickerChange(e) {
     const pickedDate = e;
     if (pickedDate.length === 2) {
       setOpenDatePicker(false);
+      dispatch(setEventDetails({ ...eventDetails, dates: pickedDate }));
       const firstDate = pickedDate[0].format('D');
       const secondDate = pickedDate[1].format('D MMM, YYYY');
       setDates(firstDate + ' - ' + secondDate);
     }
+  }
+  function handleSaveEvent() {
+    const eventData = {
+      dates: eventDetails.dates,
+      tags: eventDetails.tags,
+      eventTitle,
+      eventDescription,
+    };
+    saveState(eventData)
+    // console.log('data: ', eventData);
   }
   return (
     <Modal
@@ -73,7 +87,11 @@ const EventModal = () => {
         </div>
         <div className='mt-7'>
           <label htmlFor='title'>Event Title</label>
-          <Input className='rounded-lg mt-3' placeholder='Event title' />
+          <Input
+            className='rounded-lg mt-3'
+            placeholder='Event title'
+            onChange={(e) => setEventTitle(e.target.value)}
+          />
         </div>
         <div className='mt-7'>
           <label htmlFor='title'>Event Desscription</label>
@@ -82,13 +100,18 @@ const EventModal = () => {
             placeholder='Event descripton'
             maxLength={200}
             className='rounded-lg mt-3'
+            onChange={(e) => setEventDescription(e.target.value)}
           />
         </div>
         <div className='mt-7'>
           <Tags />
         </div>
         <div className='mt-14'>
-          <Button type='primary' className='bg-blue-600 w-full'>
+          <Button
+            type='primary'
+            className='bg-blue-600 w-full'
+            onClick={handleSaveEvent}
+          >
             Add event
           </Button>
         </div>

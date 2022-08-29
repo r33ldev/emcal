@@ -12,10 +12,10 @@ export const loadState = () => {
 export const saveState = (mcal_events) => {
   try {
     const serializedState = JSON.stringify(mcal_events);
-    localStorage.saveState('mcal_events', serializedState);
+    localStorage.setItem('mcal_events', serializedState);
     return 1;
   } catch (err) {
-    console.error('error saving events');
+    console.error('error saving events', err);
     return undefined;
   }
 };

@@ -8,6 +8,7 @@ const initialState = {
   currentMonthIndex: month,
   selectedDay: null,
   eventModalIsOpen: false,
+  eventDetails: {}
 };
 
 const appSlice = createSlice({
@@ -32,6 +33,9 @@ const appSlice = createSlice({
     closeEventModal(state) {
       state.eventModalIsOpen = false;
     },
+    setEventDetails(state,action) {
+      state.eventDetails = action.payload
+    }
   },
 });
 
@@ -40,5 +44,6 @@ export const {
   setSelectedDay,
   openEventModal,
   closeEventModal,
+  setEventDetails,
 } = appSlice.actions;
 export default appSlice.reducer;

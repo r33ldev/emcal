@@ -1,16 +1,20 @@
-import { Tag } from 'antd';
 import React, { useState } from 'react';
+import { Tag } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEventDetails } from '../../../redux/appslice';
+
 const { CheckableTag } = Tag;
-const tagsData = ['Movies', 'Books', 'Music', 'Sports'];
-
+const tagsData = ['Movies', 'Books', 'Music', 'Sports','Tasks'];
 const Tags = () => {
-  const [selectedTags, setSelectedTags] = useState(['Books']);
-
+  const [selectedTags, setSelectedTags] = useState(['Tasks']);
+  const dispatch = useDispatch();
+  const {eventDetails} = useSelector((state) => state.app)
   const handleChange = (tag, checked) => {
     const nextSelectedTags = checked
       ? [...selectedTags, tag]
       : selectedTags.filter((t) => t !== tag);
-    setSelectedTags(nextSelectedTags);
+      setSelectedTags(nextSelectedTags);
+      dispatch(setEventDetails({...eventDetails, tags: nextSelectedTags}))
   };
 
   return (
@@ -20,7 +24,7 @@ const Tags = () => {
           marginRight: 8,
         }}
       >
-        Categories:
+        Tags:
       </span>
       {tagsData.map((tag) => (
         <CheckableTag
