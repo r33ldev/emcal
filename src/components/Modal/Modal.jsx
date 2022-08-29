@@ -1,14 +1,16 @@
 import { Modal } from 'antd';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeEventModal } from '../../redux/appslice';
-import { DatePicker } from 'antd';
+import { DatePicker, Input, Button } from 'antd';
+import Tags from './sub-component/Tags';
 const EventModal = () => {
   const { RangePicker } = DatePicker;
   const dispatch = useDispatch();
   const { selectedDay } = useSelector((state) => state.app);
   const [openDatePicker, setOpenDatePicker] = useState(false);
   const [dates, setDates] = useState(selectedDay.format('D MMM, YYYY'));
+  const { TextArea } = Input;
   function handleDatePickerChange(e) {
     const pickedDate = e;
     if (pickedDate.length === 2) {
@@ -17,7 +19,6 @@ const EventModal = () => {
       const secondDate = pickedDate[1].format('D MMM, YYYY');
       setDates(firstDate + ' - ' + secondDate);
     }
-    console.log(pickedDate[0].format('D MMM, YYYY'));
   }
   return (
     <Modal
@@ -36,8 +37,15 @@ const EventModal = () => {
       <div className=' '>
         <div className='flex justify-between'>
           <div className='flex cursor-pointer'>
-            <p onClick={() => setOpenDatePicker(!openDatePicker)}>{dates}</p>
-            <span className='material-icons-outlined'>keyboard_arrow_down</span>
+            <div
+              className='flex'
+              onClick={() => setOpenDatePicker(!openDatePicker)}
+            >
+              <p className='text-2xl font-bold'>{dates}</p>
+              <span className='material-icons-outlined'>
+                keyboard_arrow_down
+              </span>
+            </div>
 
             <RangePicker
               open={openDatePicker}
@@ -52,8 +60,37 @@ const EventModal = () => {
             </span>
           </p>
         </div>
-        <div>
-          
+        <div className='flex gap-4 mt-7'>
+          <button className='border rounded-full py-1 px-4 text-lg'>
+            Today
+          </button>
+          <button className='border rounded-full py-1 px-4 text-lg'>
+            Today
+          </button>
+          <button className='border rounded-full py-1 px-4 text-lg'>
+            Today
+          </button>
+        </div>
+        <div className='mt-7'>
+          <label htmlFor='title'>Event Title</label>
+          <Input className='rounded-lg mt-3' placeholder='Event title' />
+        </div>
+        <div className='mt-7'>
+          <label htmlFor='title'>Event Desscription</label>
+          <TextArea
+            rows={4}
+            placeholder='Event descripton'
+            maxLength={200}
+            className='rounded-lg mt-3'
+          />
+        </div>
+        <div className='mt-7'>
+          <Tags />
+        </div>
+        <div className='mt-14'>
+          <Button type='primary' className='bg-blue-600 w-full'>
+            Add event
+          </Button>
         </div>
       </div>
     </Modal>

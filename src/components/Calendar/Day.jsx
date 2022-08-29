@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
 import { Checkbox } from 'antd';
+import dayjs from 'dayjs';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { openEventModal, setSelectedDay } from '../../redux/appslice';
 const Day = ({ day }) => {

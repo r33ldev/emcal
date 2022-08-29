@@ -23,7 +23,7 @@ const monthDropdownMenu = (currentMonthIndex) => {
   const months = dayjs.months();
   return (
     <div className='bg-white p-4'>
-      {months.slice(currentMonthIndex + 1, -1).map((month) => (
+      {months.slice(currentMonthIndex + 1).map((month) => (
         <p className='py-2 cursor-pointer capitalize text-2xl text-gray-500 '>
           {/* {dayjs(new Date(dayjs().year(), currentMonthIndex)).format('MMMM YYYY')} */}
           {month}
