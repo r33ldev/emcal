@@ -18,7 +18,7 @@ const EventModal = () => {
     const pickedDate = e;
     if (pickedDate.length === 2) {
       setOpenDatePicker(false);
-      dispatch(setEventDetails({ ...eventDetails, dates: pickedDate }));
+      dispatch(setEventDetails({ dates: pickedDate, ...eventDetails }));
       const firstDate = pickedDate[0].format('D');
       const secondDate = pickedDate[1].format('D MMM, YYYY');
       setDates(firstDate + ' - ' + secondDate);
@@ -31,8 +31,8 @@ const EventModal = () => {
       eventTitle,
       eventDescription,
     };
-    saveState(eventData)
-    // console.log('data: ', eventData);
+    saveState(eventData);
+    console.log('data: ', eventData);
   }
   return (
     <Modal
@@ -76,13 +76,13 @@ const EventModal = () => {
         </div>
         <div className='flex gap-4 mt-7'>
           <button className='border rounded-full py-1 px-4 text-lg'>
-            Today
+            Yesterday
           </button>
           <button className='border rounded-full py-1 px-4 text-lg'>
             Today
           </button>
           <button className='border rounded-full py-1 px-4 text-lg'>
-            Today
+            Tomorrow
           </button>
         </div>
         <div className='mt-7'>

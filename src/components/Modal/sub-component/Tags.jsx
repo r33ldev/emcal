@@ -6,7 +6,7 @@ import { setEventDetails } from '../../../redux/appslice';
 const { CheckableTag } = Tag;
 const tagsData = ['Movies', 'Books', 'Music', 'Sports','Tasks'];
 const Tags = () => {
-  const [selectedTags, setSelectedTags] = useState(['Tasks']);
+  const [selectedTags, setSelectedTags] = useState([]);
   const dispatch = useDispatch();
   const {eventDetails} = useSelector((state) => state.app)
   const handleChange = (tag, checked) => {
@@ -14,7 +14,8 @@ const Tags = () => {
       ? [...selectedTags, tag]
       : selectedTags.filter((t) => t !== tag);
       setSelectedTags(nextSelectedTags);
-      dispatch(setEventDetails({...eventDetails, tags: nextSelectedTags}))
+      dispatch(setEventDetails({ tags: nextSelectedTags, ...eventDetails }));
+
   };
 
   return (
