@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
 export const getMonth = (month = dayjs().month()) => {
   month = Math.floor(month);
@@ -13,5 +13,16 @@ export const getMonth = (month = dayjs().month()) => {
     });
   });
 
+
+
   return daysMatrix;
+};
+
+export const getHours = () => {
+  const matrix = new Array(24).fill([]).map(() => {
+    return new Array(30).fill(null).map((el, i) => {
+      return i;
+    });
+  });
+  return matrix;
 };
