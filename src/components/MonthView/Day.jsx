@@ -2,25 +2,19 @@ import { Checkbox } from 'antd';
 import dayjs from 'dayjs';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { openEventModal, setSelectedDay } from '../../redux/appslice';
+import { openEventModal, setCurrentView, setSelectedDay } from '../../redux/appslice';
 const Day = ({ day }) => {
   const dispatch = useDispatch();
-  // const [selectDay, setSelectDay] = useState();
   function getCurrentDay() {
     return day.format('DD-MM-YY') === dayjs().format('DD-MM-YY')
       ? 'border-blue-600 text-blue-600'
       : ' border-gray-200';
   }
   const handleSelectADay = (e) => {
-    // setSelectDay(day);
     dispatch(setSelectedDay(day));
+    dispatch(setCurrentView('day'));
     dispatch(openEventModal());
   };
-  // useEffect(() => {
-  //   if (selectDay) {
-      
-  //   }
-  // }, [selectDay, day, dispatch]);
   const onChange = () => {};
   return (
     <div

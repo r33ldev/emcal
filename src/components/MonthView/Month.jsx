@@ -11,7 +11,7 @@ export default function Month({ month }) {
     'Saturday',
   ];
   return (
-    <div className='text-xl' style={{ height: 'calc(80vh)' }}>
+    <div className='text-xl' style={{ height: 'calc(85vh)' }}>
       <div className='m-5  justify-center text-center grid grid-cols-7 grid-rows-1'>
         {weekdays.map((day) => (
           <p className='mt-1 flex justify-center'>{day}</p>
