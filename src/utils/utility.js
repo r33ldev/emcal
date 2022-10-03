@@ -13,14 +13,12 @@ export const getMonth = (month = dayjs().month()) => {
     });
   });
 
-
-
   return daysMatrix;
 };
 
 export const getHours = () => {
   const matrix = new Array(24).fill([]).map(() => {
-    return new Array(30).fill(null).map((el, i) => {
+    return new Array(60).fill(null).map((el, i) => {
       return i;
     });
   });
