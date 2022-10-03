@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { setCurrentView } from "../../redux/appslice";
 import { getHours } from "../../utils/utility";
 import Time from "./Time";
-const DayCalendar = () => {
+const WeekCalendar = () => {
   const dispatch = useDispatch();
   function handleBack() {
     dispatch(setCurrentView("month"));
@@ -23,4 +23,4 @@ const DayCalendar = () => {
   );
 };
 
-export default DayCalendar;
+export default WeekCalendar;

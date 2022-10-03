@@ -19,7 +19,7 @@ export default function Time({ time }) {
               }}
             >
               {row.map((min, idx) => (
-                <Minuteslot min={min} key={idx} hour={i+1} />
+                <Minuteslot min={min} key={idx + i + 1} hour={i+1} />
               ))}
             </div>
           </div>
