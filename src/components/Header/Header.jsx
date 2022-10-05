@@ -1,17 +1,21 @@
-import React from 'react';
-import { Dropdown } from 'antd';
-import dayjs from 'dayjs';
-import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentMonthIndex } from '../../redux/appslice';
+import React, { useState } from "react";
+import { Dropdown } from "antd";
+import dayjs from "dayjs";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrentMonthIndex, setCurrentView } from "../../redux/appslice";
 
-const dropdownMenu = () => {
-  const menuArray = ['daily', 'weekly', 'monthly', 'yearly'];
+const dropdownMenu = (dispatch, setActive) => {
+  const menuArray = ["daily", "weekly", "monthly", "yearly"];
   return (
     <div className='bg-white p-4'>
       {menuArray.map((menu, i) => (
         <p
           className='py-2 cursor-pointer capitalize text-2xl text-gray-500'
           key={i}
+          onClick={() => {
+            dispatch(setCurrentView(menu));
+            setActive(menu)
+          }}
         >
           {menu}
         </p>
@@ -35,6 +39,7 @@ const monthDropdownMenu = (currentMonthIndex) => {
 const Header = () => {
   const dispatch = useDispatch();
   const { currentMonthIndex } = useSelector((state) => state.app);
+  const [active, setActive] = useState('monthly')
   function handleToday() {
     dispatch(
       setCurrentMonthIndex(
@@ -72,14 +77,14 @@ const Header = () => {
         <Dropdown overlay={monthDropdownMenu(currentMonthIndex)}>
           <p className='flex items-center mx-8 cursor-pointer'>
             {dayjs(new Date(dayjs().year(), currentMonthIndex)).format(
-              'MMMM YYYY'
+              "MMMM YYYY"
             )}
             <span className='material-icons-outlined'>keyboard_arrow_down</span>
           </p>
         </Dropdown>
-        <Dropdown overlay={dropdownMenu}>
+        <Dropdown overlay={dropdownMenu(dispatch, setActive)}>
           <p className='flex items-center border border-slate-700 p-1 rounded-lg cursor-pointer'>
-            Monthly
+            {active}
             <span className='material-icons-outlined'>keyboard_arrow_down</span>
           </p>
         </Dropdown>

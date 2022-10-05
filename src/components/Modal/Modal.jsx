@@ -46,7 +46,7 @@ const EventModal = () => {
       footer={null}
       onCancel={() => dispatch(closeEventModal())}
       onOk={() => dispatch(closeEventModal())}
-      title='Create an event'
+      title='Update booking'
     >
       <div className=' '>
         <div className='flex justify-between'>
@@ -86,18 +86,18 @@ const EventModal = () => {
           </button>
         </div>
         <div className='mt-7'>
-          <label htmlFor='title'>Event Title</label>
+          <label htmlFor='title'>Booking Title</label>
           <Input
             className='rounded-lg mt-3'
-            placeholder='Event title'
+            placeholder='booking title'
             onChange={(e) => setEventTitle(e.target.value)}
           />
         </div>
         <div className='mt-7'>
-          <label htmlFor='title'>Event Desscription</label>
+          <label htmlFor='title'>Booking Desscription</label>
           <TextArea
             rows={4}
-            placeholder='Event descripton'
+            placeholder='Booking descripton'
             maxLength={200}
             className='rounded-lg mt-3'
             onChange={(e) => setEventDescription(e.target.value)}
@@ -112,7 +112,7 @@ const EventModal = () => {
             className='bg-blue-600 w-full'
             onClick={handleSaveEvent}
           >
-            Add event
+            Update booking
           </Button>
         </div>
       </div>

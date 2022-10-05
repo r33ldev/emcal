@@ -16,8 +16,8 @@ export default function App() {
       {eventModalIsOpen && <EventModal />}
       <div className='w-full h-screen '>
         <Header />
-        {currentView === "month" && <MonthCalendar />}
-        {currentView === "day" && <WeekCalendar />}
+        {currentView === "monthly" && <MonthCalendar />}
+        {currentView === "daily" && <WeekCalendar />}
       </div>
     </>
   );
