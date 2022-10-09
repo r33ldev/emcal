@@ -11,10 +11,10 @@ const WeekCalendar = () => {
     dispatch(setCurrentView("monthly"));
   }
   const [weekData, setWeekData] = useState(getWeekData());
-  const { currentWeekIndex } = useSelector((state) => state.app);
-  useEffect(() => {
-    setWeekData(getWeekData(currentWeekIndex));
-  }, [currentWeekIndex]);
+  // const { currentWeekIndex } = useSelector((state) => state.app);
+  // useEffect(() => {
+  //   setWeekData(getWeekData(currentWeekIndex));
+  // }, [currentWeekIndex]);
   // const hours = getHours();
 
   return (
