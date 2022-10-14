@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentMonthIndex, setCurrentView } from "../../redux/appslice";
 
 const dropdownMenu = (dispatch, setActive) => {
-  const menuArray = ["daily", "weekly", "monthly", "yearly"];
+  const menuArray = ["Daily", "Weekly", "Monthly", "Yearly"];
   return (
     <div className='bg-white p-4'>
       {menuArray.map((menu, i) => (
@@ -39,7 +39,7 @@ const monthDropdownMenu = (currentMonthIndex) => {
 const Header = () => {
   const dispatch = useDispatch();
   const { currentMonthIndex } = useSelector((state) => state.app);
-  const [active, setActive] = useState('monthly')
+  const [active, setActive] = useState('Monthly')
   function handleToday() {
     dispatch(
       setCurrentMonthIndex(
