@@ -3,7 +3,6 @@ import { Checkbox } from "antd";
 import { format } from "date-fns";
 import { getCurrentDay } from "../../utils/utility";
 const Week = ({ currentWeek }) => {
-  console.log("weeK: ", currentWeek);
   return (
     <>
       <div className=' ml-28  justify-center text-center grid grid-cols-7 grid-rows-1'>

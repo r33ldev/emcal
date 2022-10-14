@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setCurrentView } from "../../redux/appslice";
 import { getWeekData } from "../../utils/utility";
-import Time from "./Time";
-import Week from "./Week";
+import Time from "../Shared/Time";
+import Week from "../Shared/Week";
 const WeekCalendar = () => {
   const dispatch = useDispatch();
   function handleBack() {
@@ -17,8 +17,6 @@ const WeekCalendar = () => {
           <span className='material-symbols-outlined'>arrow_back</span>
         </span>
       </button>
-      {/* <Week currentWeek={weekData} />
-      <Time time={hours} /> */}
       {weekData.map((week, idx) => {
         if (idx === 0) return <Week currentWeek={week} />;
         return <Time currentWeek={week} index={idx} />;

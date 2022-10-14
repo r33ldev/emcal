@@ -24,8 +24,7 @@ export const getYear = (year = dayjs().year()) => {
     currentMonthCount++;
     return getMonth(currentMonthCount, year);
   });
-  console.table('moth: ', monthMatrix)
-  return monthMatrix
+  return monthMatrix;
 };
 
 export const getWeekData = (week) => {
@@ -47,15 +46,15 @@ export const getWeekData = (week) => {
 
 export const getDayData = (day) => {
   const dayMatrix = new Array(25).fill([]).map((e, idx) => {
-    if(idx === 0) return dayjs(day)
+    if (idx === 0) return dayjs(day);
     return new Array(7).fill(null).map(() => {
-       return new Array(6).fill(null).map((el, i) => {
-         return i;
-       });
-    })
-  })
+      return new Array(6).fill(null).map((el, i) => {
+        return i;
+      });
+    });
+  });
   return dayMatrix;
-}
+};
 
 // export const getWeek = (week) => {
 //   week = Math.floor(week);

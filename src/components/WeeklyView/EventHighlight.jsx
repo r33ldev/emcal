@@ -1,5 +1,5 @@
 import React from "react";
-import avatar from "../../assets/avatar-1.png";
+// import avatar from "../../assets/avatar-1.png";
 const EventHighlight = ({ eventExists }) => {
   return (
     <div

@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentView } from "../../redux/appslice";
 import { getDayData } from "../../utils/utility";
-import Time from "../WeekView/Time";
-import Week from "../WeekView/Week";
+import Time from "../Shared/Time";
+import Week from "../Shared/Week";
 
 const DailyCalendar = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,6 @@ const DailyCalendar = () => {
   }
   const { currentDay } = useSelector((state) => state.app);
   const dayData = getDayData(currentDay);
-  console.log('timenow: ', currentDay, dayData)
   return (
     <div style={{ height: "calc(100vh-34px)" }}>
       <button onClick={handleBack} className='mt-6'>

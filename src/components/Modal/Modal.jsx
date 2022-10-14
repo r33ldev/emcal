@@ -32,7 +32,6 @@ const EventModal = () => {
       eventDescription,
     };
     saveState(eventData);
-    console.log('data: ', eventData);
   }
   return (
     <Modal

@@ -94,6 +94,7 @@ const Header = () => {
     dispatch(setCurrentDay(new Date(e)));
     dispatch(setCurrentView("Daily"));
     setCurrentTime(e.format("D MMMM, YYYY"));
+    setOpenDatePicker(false);
   }
   return (
     <header className='flex  px-16 py-6 items-center justify-between border-b border-[#DEDEE3]'>

@@ -1,6 +1,6 @@
 import React from "react";
-import EventHighlight from "./EventHighlight";
-const Minuteslot = ({ current, index }) => {
+import EventHighlight from "../WeeklyView/EventHighlight";
+const  Minuteslot = ({ current, index }) => {
   const events = [
     [2, 4],
     [5, 1],
