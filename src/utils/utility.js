@@ -46,9 +46,8 @@ export const getWeekData = (week) => {
 };
 
 export const getDayData = (day) => {
-  day = Math.floor(day) || dayjs().day()
   const dayMatrix = new Array(25).fill([]).map((e, idx) => {
-    if(idx === 0) return dayjs().day(day)
+    if(idx === 0) return dayjs(day)
     return new Array(7).fill(null).map(() => {
        return new Array(6).fill(null).map((el, i) => {
          return i;

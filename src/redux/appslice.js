@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 
 const month = dayjs().month();
 const year = dayjs().year();
+const day = dayjs().day();
 // const week = dayjs().week()
 const initialState = {
   data: {},
@@ -12,7 +13,8 @@ const initialState = {
   eventModalIsOpen: false,
   eventDetails: {},
   currentView: "Monthly",
-  currentYearIndex: year
+  currentYearIndex: year,
+  currentDay: day,
 };
 
 const appSlice = createSlice({
@@ -30,6 +32,9 @@ const appSlice = createSlice({
     },
     setCurrentYearIndex(state, action) {
       state.currentYearIndex = action.payload;
+    },
+    setCurrentDay(state, action) {
+      state.currentDay = action.payload;
     },
     setCurrentWeekIndex(state, action) {
       state.currentWeekIndex = action.payload;
@@ -61,5 +66,6 @@ export const {
   setEventDetails,
   setCurrentView,
   setCurrentYearIndex,
+  setCurrentDay,
 } = appSlice.actions;
 export default appSlice.reducer;

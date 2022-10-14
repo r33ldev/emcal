@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Dropdown } from "antd";
+import { DatePicker, Dropdown } from "antd";
 import dayjs from "dayjs";
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrentMonthIndex, setCurrentView } from "../../redux/appslice";
-
-const dropdownMenu = (dispatch, setActive) => {
+import {
+  setCurrentDay,
+  setCurrentMonthIndex,
+  setCurrentView,
+} from "../../redux/appslice";
+const dropdownMenu = (dispatch) => {
   const menuArray = ["Daily", "Weekly", "Monthly", "Yearly"];
   return (
     <div className='bg-white p-4'>
@@ -14,7 +17,6 @@ const dropdownMenu = (dispatch, setActive) => {
           key={i}
           onClick={() => {
             dispatch(setCurrentView(menu));
-            setActive(menu)
           }}
         >
           {menu}
@@ -23,37 +25,75 @@ const dropdownMenu = (dispatch, setActive) => {
     </div>
   );
 };
-const monthDropdownMenu = (currentMonthIndex) => {
-  const months = dayjs.months();
-  return (
-    <div className='bg-white p-4'>
-      {months.slice(currentMonthIndex + 1).map((month) => (
-        <p className='py-2 cursor-pointer capitalize text-2xl text-gray-500 '>
-          {/* {dayjs(new Date(dayjs().year(), currentMonthIndex)).format('MMMM YYYY')} */}
-          {month}
-        </p>
-      ))}
-    </div>
-  );
-};
+// const monthDropdownMenu = (currentMonthIndex) => {
+//   const months = dayjs.months();
+//   return (
+//     <div className='bg-white p-4'>
+//       {months.slice(currentMonthIndex + 1).map((month) => (
+//         <p className='py-2 cursor-pointer capitalize text-2xl text-gray-500 '>
+//           {/* {dayjs(new Date(dayjs().year(), currentMonthIndex)).format('MMMM YYYY')} */}
+//           {month}
+//         </p>
+//       ))}
+//     </div>
+//   );
+// };
 const Header = () => {
   const dispatch = useDispatch();
-  const { currentMonthIndex } = useSelector((state) => state.app);
-  const [active, setActive] = useState('Monthly')
+  const { currentMonthIndex, currentView, currentDay } = useSelector(
+    (state) => state.app
+  );
+  const [currentTime, setCurrentTime] = useState(
+    dayjs(new Date(dayjs().year(), currentMonthIndex)).format("MMMM YYYY")
+  );
+  const [openDatePicker, setOpenDatePicker] = useState(false);
   function handleToday() {
-    dispatch(
-      setCurrentMonthIndex(
-        currentMonthIndex === dayjs().month()
-          ? currentMonthIndex + Math.random()
-          : dayjs().month()
-      )
-    );
+    switch (currentView) {
+      case "Monthly":
+        dispatch(
+          setCurrentMonthIndex(
+            currentMonthIndex === dayjs().month()
+              ? currentMonthIndex + Math.random()
+              : dayjs().month()
+          )
+        );
+        break;
+      case "Daily":
+        const day = dayjs().day();
+        dispatch(setCurrentDay(dayjs().day(day)));
+        break;
+      default:
+        break;
+    }
   }
-  function handlePrevMonth() {
-    dispatch(setCurrentMonthIndex(currentMonthIndex - 1));
+  function handlePrev() {
+    switch (currentView) {
+      case "Monthly":
+        dispatch(setCurrentMonthIndex(currentMonthIndex - 1));
+        break;
+      case "Daily":
+        dispatch(setCurrentDay(currentDay.add(-1, "day")));
+        break;
+      default:
+        break;
+    }
   }
-  function handleNextMonth() {
-    dispatch(setCurrentMonthIndex(currentMonthIndex + 1));
+  function handleNext() {
+    switch (currentView) {
+      case "Monthly":
+        dispatch(setCurrentMonthIndex(currentMonthIndex + 1));
+        break;
+      case "Daily":
+        dispatch(setCurrentDay(currentDay.add(1, "day")));
+        break
+      default:
+        break;
+    }
+  }
+  function handleChangeDate(e) {
+    dispatch(setCurrentDay(new Date(e)));
+    dispatch(setCurrentView("Daily"));
+    setCurrentTime(e.format("D MMMM, YYYY"));
   }
   return (
     <header className='flex  px-16 py-6 items-center justify-between border-b border-[#DEDEE3]'>
@@ -64,27 +104,40 @@ const Header = () => {
         <button onClick={handleToday} className='border rounded py-2 px-4 mr-5'>
           Today
         </button>
-        <button onClick={handlePrevMonth}>
+        <button onClick={handlePrev}>
           <span className='material-icons-outlined cursor-pointer text-gray-600 mx-2'>
             chevron_left
           </span>
         </button>
-        <button onClick={handleNextMonth}>
+        <button onClick={handleNext}>
           <span className='material-icons-outlined cursor-pointer text-gray-600 mx-2'>
             chevron_right
           </span>
         </button>
-        <Dropdown overlay={monthDropdownMenu(currentMonthIndex)}>
-          <p className='flex items-center mx-8 cursor-pointer'>
-            {dayjs(new Date(dayjs().year(), currentMonthIndex)).format(
-              "MMMM YYYY"
-            )}
+        {/* <Dropdown overlay={monthDropdownMenu(currentMonthIndex)}> */}
+        <div className='ml-8 flex items-center cursor-pointer'>
+          <p
+            onClick={() => setOpenDatePicker(!openDatePicker)}
+            className='flex items-center'
+          >
+            {currentTime}
             <span className='material-icons-outlined'>keyboard_arrow_down</span>
           </p>
-        </Dropdown>
-        <Dropdown overlay={dropdownMenu(dispatch, setActive)}>
-          <p className='flex items-center border border-slate-700 p-1 rounded-lg cursor-pointer'>
-            {active}
+          <span
+            className='invisible w-3'
+            onClickAway={() => setOpenDatePicker(false)}
+          >
+            <DatePicker
+              onChange={handleChangeDate}
+              open={openDatePicker}
+              showToday
+            />
+          </span>
+        </div>
+        {/* </Dropdown> */}
+        <Dropdown overlay={dropdownMenu(dispatch)}>
+          <p className='flex items-center border border-slate-700 py-1 px-4 rounded-lg cursor-pointer'>
+            {currentView}
             <span className='material-icons-outlined'>keyboard_arrow_down</span>
           </p>
         </Dropdown>
