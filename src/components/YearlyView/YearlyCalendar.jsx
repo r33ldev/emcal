@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { YEARS } from "../../utils/data";
 import { getYear } from "../../utils/utility";
-import Month from "../MonthView/Month";
+import Month from "../MonthlyView/Month";
 
 const YearlyCalendar = () => {
   const [currentYear, setCurrentYear] = useState(getYear());
