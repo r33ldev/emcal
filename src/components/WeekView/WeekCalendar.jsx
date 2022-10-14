@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { setCurrentView } from "../../redux/appslice";
 import { getWeekData } from "../../utils/utility";
 import Time from "./Time";
@@ -8,15 +7,9 @@ import Week from "./Week";
 const WeekCalendar = () => {
   const dispatch = useDispatch();
   function handleBack() {
-    dispatch(setCurrentView("monthly"));
+    dispatch(setCurrentView("Monthly"));
   }
-  const [weekData, setWeekData] = useState(getWeekData());
-  // const { currentWeekIndex } = useSelector((state) => state.app);
-  // useEffect(() => {
-  //   setWeekData(getWeekData(currentWeekIndex));
-  // }, [currentWeekIndex]);
-  // const hours = getHours();
-
+  const weekData = getWeekData();
   return (
     <div style={{ height: "calc(100vh-34px)" }}>
       <button onClick={handleBack} className='mt-6'>

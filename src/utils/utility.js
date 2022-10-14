@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 var weekday = require("dayjs/plugin/weekday");
 dayjs.extend(weekday);
-export const getMonth = (month = dayjs().month()) => {
+export const getMonth = (month = dayjs().month(), year) => {
   month = Math.floor(month);
-  const year = dayjs().year();
+  year = year || dayjs().year();
   const firstDayOfMonth = dayjs(new Date(year, month, 1)).day();
   let currentMonthCount = 0 - firstDayOfMonth;
 
@@ -17,8 +17,19 @@ export const getMonth = (month = dayjs().month()) => {
   return daysMatrix;
 };
 
+export const getYear = (year = dayjs().year()) => {
+  year = Math.floor(year);
+  let currentMonthCount = -1;
+  const monthMatrix = new Array(12).fill(null).map(() => {
+    currentMonthCount++;
+    return getMonth(currentMonthCount, year);
+  });
+  console.table('moth: ', monthMatrix)
+  return monthMatrix
+};
+
 export const getWeekData = (week) => {
-  week = Math.floor(week)
+  week = Math.floor(week);
   const weekMatrix = new Array(25).fill([]).map((el, idx) => {
     let current = 0;
     return new Array(7).fill(null).map((el, i) => {
@@ -31,9 +42,21 @@ export const getWeekData = (week) => {
       });
     });
   });
-  console.log("getData: ", weekMatrix);
   return weekMatrix;
 };
+
+export const getDayData = (day) => {
+  day = Math.floor(day) || dayjs().day()
+  const dayMatrix = new Array(25).fill([]).map((e, idx) => {
+    if(idx === 0) return dayjs().day(day)
+    return new Array(7).fill(null).map(() => {
+       return new Array(6).fill(null).map((el, i) => {
+         return i;
+       });
+    })
+  })
+  return dayMatrix;
+}
 
 // export const getWeek = (week) => {
 //   week = Math.floor(week);

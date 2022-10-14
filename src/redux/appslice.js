@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
 
 const month = dayjs().month();
+const year = dayjs().year();
 // const week = dayjs().week()
 const initialState = {
   data: {},
@@ -10,7 +11,8 @@ const initialState = {
   selectedDay: null,
   eventModalIsOpen: false,
   eventDetails: {},
-  currentView: 'monthly'
+  currentView: "Monthly",
+  currentYearIndex: year
 };
 
 const appSlice = createSlice({
@@ -25,6 +27,9 @@ const appSlice = createSlice({
     },
     setCurrentMonthIndex(state, action) {
       state.currentMonthIndex = action.payload;
+    },
+    setCurrentYearIndex(state, action) {
+      state.currentYearIndex = action.payload;
     },
     setCurrentWeekIndex(state, action) {
       state.currentWeekIndex = action.payload;
@@ -55,5 +60,6 @@ export const {
   closeEventModal,
   setEventDetails,
   setCurrentView,
+  setCurrentYearIndex,
 } = appSlice.actions;
 export default appSlice.reducer;
