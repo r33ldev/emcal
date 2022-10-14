@@ -1,10 +1,10 @@
 import dayjs from 'dayjs';
 import React from 'react';
-import MonthCalendar from "./components/MonthView/MonthCalendar";
+import MonthCalendar from "./components/MonthlyView/MonthCalendar";
 import Header from './components/Header/Header';
 import EventModal from './components/Modal/Modal';
 import { useSelector } from 'react-redux';
-import WeekCalendar from './components/WeekView/WeekCalendar';
+import WeekCalendar from './components/WeeklyView/WeekCalendar';
 import DailyCalendar from './components/DailyView/DailyCalendar';
 import YearlyCalendar from './components/YearlyView/YearlyCalendar';
 export default function App() {
