@@ -17,7 +17,7 @@ const Day = ({ day }) => {
     >
       <header className={`flex flex-col items-center`}>
         <p className={` p-1 my-1 text-2xl text-center`}>
-          {day.format('DD')}
+          {day.format('DD')} 
         </p>
         <p className='absolute bottom-0 right-0'>
           <Checkbox onChange={onChange} />
