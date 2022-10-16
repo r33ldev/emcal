@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 
 const month = dayjs().month();
 const year = dayjs().year();
-const day = dayjs().day();
+const day = dayjs(new Date()).day();
 // const week = dayjs().week()
 const initialState = {
   data: {},

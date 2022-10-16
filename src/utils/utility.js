@@ -30,10 +30,11 @@ export const getYear = (year = dayjs().year()) => {
 export const getWeekData = (week) => {
   week = Math.floor(week);
   const weekMatrix = new Array(25).fill([]).map((el, idx) => {
-    let current = 0;
+    let current = -1;
     return new Array(7).fill(null).map((el, i) => {
       if (idx === 0) {
         current++;
+        console.log("week: ", dayjs().weekday(current));
         return dayjs().weekday(current);
       }
       return new Array(6).fill(null).map((el, i) => {
@@ -44,7 +45,7 @@ export const getWeekData = (week) => {
   return weekMatrix;
 };
 
-export const getDayData = (day) => {
+export const getDayData = (day = dayjs(new Date()).day()) => {
   const dayMatrix = new Array(25).fill([]).map((e, idx) => {
     if (idx === 0) return dayjs(day);
     return new Array(7).fill(null).map(() => {
@@ -56,17 +57,19 @@ export const getDayData = (day) => {
   return dayMatrix;
 };
 
-// export const getWeek = (week) => {
-//   week = Math.floor(week);
-//   let current = 0;
-//   return new Array(5).fill([]).map(() => {
-//     return new Array(7).fill(null).map(() => {
-//       current++;
-//       return dayjs().weekday(current);
-//     });
-//   });
-// };
+export const getMinutes = () => {
+  return new Array(144).fill(null).map((x, y) => {
+    return y + 1;
+  });
+};
 
+export function getCurrentMinute() {
+  const minute = new Date().getMinutes() + 1;
+  const hour = new Date().getHours() + 1;
+  const x = minute * hour;
+  console.log("xy: ", hour, minute, x, x / 10);
+  return Math.floor(x / 10);
+}
 export function getCurrentDay(day) {
   return day.format("DD-MM-YY") === dayjs().format("DD-MM-YY")
     ? "border border-blue-600 text-blue-600"

@@ -15,9 +15,6 @@ const  Minuteslot = ({ current, index }) => {
         });
         return (
           <p className='border border-[#e5e7eb50] w-full  justify-center cursor-pointer relative'>
-            {/* <p className='border border-b-[#0E689D50] border-x-0'> // show realtime minutes of hours */}
-              {/* &nbsp;
-            </p> */}
             <EventHighlight eventExists={eventExists.includes(true)} />
           </p>
         );
