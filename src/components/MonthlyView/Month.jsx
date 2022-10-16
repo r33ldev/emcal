@@ -17,7 +17,7 @@ export default function Month({ month }) {
       <div
         className={`mt-5 ${
           currentView === "Yearly" && "border"
-        } justify-center text-center grid grid-cols-7 grid-rows-1`}
+        } justify-center font-poppins  text-2xl font-medium  text-center grid grid-cols-7 grid-rows-1`}
       >
         {weekdays.map((day) => (
           <p className='mt-1 flex  p-4 justify-center'>{day}</p>

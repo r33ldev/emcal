@@ -97,7 +97,7 @@ const Header = () => {
     setOpenDatePicker(false);
   }
   return (
-    <header className='flex  px-16 py-6 items-center justify-between border-b border-[#DEDEE3]'>
+    <header className='flex font-poppins  font-semibold   px-16 py-6 items-center justify-between border-b border-[#DEDEE3]'>
       <p className='text-4xl'>
         EmCal <span>App</span>
       </p>

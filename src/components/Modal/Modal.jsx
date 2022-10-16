@@ -37,7 +37,7 @@ const EventModal = () => {
     <Modal
       style={{
         top: 0,
-        margin: '0 0 0 auto',
+        margin: "0 0 0 auto",
       }}
       visible={true}
       closable={true}
@@ -108,10 +108,10 @@ const EventModal = () => {
         <div className='mt-14'>
           <Button
             type='primary'
-            className='bg-blue-600 w-full'
+            className='bg-[#1B76AF] w-full'
             onClick={handleSaveEvent}
           >
-            Update booking
+            Save changes
           </Button>
         </div>
       </div>

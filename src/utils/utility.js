@@ -34,7 +34,6 @@ export const getWeekData = (week) => {
     return new Array(7).fill(null).map((el, i) => {
       if (idx === 0) {
         current++;
-        console.log("week: ", dayjs().weekday(current));
         return dayjs().weekday(current);
       }
       return new Array(6).fill(null).map((el, i) => {
@@ -64,8 +63,8 @@ export const getMinutes = () => {
 };
 
 export function getCurrentMinute() {
-  const minute = new Date().getMinutes() + 1;
-  const hour = new Date().getHours() + 1;
+  const minute = new Date().getMinutes() + 1; // 0 - 60
+  const hour = new Date().getHours() + 1; // 0 - 24
   const x = minute * hour;
   console.log("xy: ", hour, minute, x, x / 10);
   return Math.floor(x / 10);

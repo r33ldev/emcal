@@ -5,7 +5,7 @@ import { getCurrentDay } from "../../utils/utility";
 const Week = ({ currentWeek }) => {
   return (
     <>
-      <div className=' ml-28  justify-center text-center grid grid-cols-7 grid-rows-1'>
+      <div className=' ml-28  justify-center text-center font-poppins  text-5xl font-light  grid grid-cols-7 grid-rows-1'>
         {currentWeek.map((weekday) => {
           return (
             <div
