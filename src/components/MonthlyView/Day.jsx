@@ -11,7 +11,7 @@ const Day = ({ day }) => {
     dispatch(setSelectedDay(day));
     dispatch(openEventModal());
   };
-  const {selectedDay} = useSelector((state)=>state.app)
+  // const {selectedDay} = useSelector((state)=>state.app)
   const [showAddButton, setShowAddButton] = useState(false);
   const onChange = () => {};
   return (
