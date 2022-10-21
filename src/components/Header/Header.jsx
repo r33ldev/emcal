@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { DatePicker, Dropdown } from "antd";
+import { Checkbox, DatePicker, Dropdown } from "antd";
 import dayjs from "dayjs";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import settingsImg from "../../assets/settings.svg";
 import {
   setCurrentDay,
   setCurrentMonthIndex,
-  setCurrentView,
+  setCurrentView
 } from "../../redux/appslice";
 const dropdownMenu = (dispatch) => {
   const menuArray = ["Daily", "Weekly", "Monthly", "Yearly"];
@@ -25,19 +26,25 @@ const dropdownMenu = (dispatch) => {
     </div>
   );
 };
-// const monthDropdownMenu = (currentMonthIndex) => {
-//   const months = dayjs.months();
-//   return (
-//     <div className='bg-white p-4'>
-//       {months.slice(currentMonthIndex + 1).map((month) => (
-//         <p className='py-2 cursor-pointer capitalize text-2xl text-gray-500 '>
-//           {/* {dayjs(new Date(dayjs().year(), currentMonthIndex)).format('MMMM YYYY')} */}
-//           {month}
-//         </p>
-//       ))}
-//     </div>
-//   );
-// };
+const configMenu = () => {
+  const configArray = [
+    "Price",
+    "Popular Days",
+    "Low booking probability",
+    "Bloccked hours",
+  ];
+  return (
+    <div className='bg-white p-4'>
+      {configArray.map((config) => (
+        <div className="cursor-pointer">
+          
+          <Checkbox />
+          {config}
+        </div>
+      ))}
+    </div>
+  );
+};
 const Header = () => {
   const dispatch = useDispatch();
   const { currentMonthIndex, currentView, currentDay } = useSelector(
@@ -85,7 +92,7 @@ const Header = () => {
         break;
       case "Daily":
         dispatch(setCurrentDay(currentDay.add(1, "day")));
-        break
+        break;
       default:
         break;
     }
@@ -140,6 +147,12 @@ const Header = () => {
           <p className='flex items-center border border-slate-700 py-1 px-4 rounded-lg cursor-pointer'>
             {currentView}
             <span className='material-icons-outlined'>keyboard_arrow_down</span>
+          </p>
+        </Dropdown>
+
+        <Dropdown overlay={configMenu()}>
+          <p className='flex items-center pl-6 cursor-pointer'>
+            <img src={settingsImg} alt='settings' width='20px' />
           </p>
         </Dropdown>
       </div>

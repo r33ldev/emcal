@@ -71,6 +71,6 @@ export function getCurrentMinute() {
 }
 export function getCurrentDay(day) {
   return day.format("DD-MM-YY") === dayjs().format("DD-MM-YY")
-    ? "border border-blue-600 text-blue-600"
+    ? "border border-2 border-[#0E689D]"
     : " border-gray-200";
 }
