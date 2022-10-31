@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +8,7 @@ html {
 }
 
 .App {
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
 }
 
@@ -38,6 +39,6 @@ html {
 }
 
 .ant-picker.ant-picker-range {
-  visibility: hidden!important;
+  visibility: hidden !important;
   position: absolute
 }

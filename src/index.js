@@ -10,7 +10,7 @@ const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
  
 root.render(
-  <StrictMode>
+  // <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
@@ -18,5 +18,5 @@ root.render(
         </Routes>
       </BrowserRouter>
     </Provider>
-  </StrictMode>
+  // </StrictMode>
 );
